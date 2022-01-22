@@ -12,6 +12,18 @@ import { FooterComponent } from './components/layout/footer/footer.component';
 import { SideMenuComponent } from './components/layout/side-menu/side-menu.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { LoginComponent } from './components/login/login.component';
+import { environment } from 'src/environments/environment';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
+import { AuthService } from './services/auth.service';
+import { AuthGuard } from './services/auth-guard.service';
+import { HomeComponent } from './components/home/home.component';
+import { CheckoutComponent } from './components/checkout/checkout.component';
+import { OrderSuccessComponent } from './components/order-success/order-success.component';
+import { AdminUsersComponent } from './admin/admin-users/admin-users.component';
 
 @NgModule({
   declarations: [
@@ -25,10 +37,22 @@ import { LoginComponent } from './components/login/login.component';
     SideMenuComponent,
     ShoppingCartComponent,
     LoginComponent,
+    HomeComponent,
+    CheckoutComponent,
+    OrderSuccessComponent,
+    AdminUsersComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
+    AngularFireAuthModule,
+    AngularFireStorageModule,
+    AngularFireDatabaseModule,
+  ],
   exports: [HeaderComponent, FooterComponent, SideMenuComponent],
-  providers: [],
+  providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

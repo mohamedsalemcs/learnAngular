@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "souq-1c5b8"
+  },
+  "targets": {
+    "souq-1c5b8": {
+      "hosting": {
+        "learnAngular": [
+          "souq-1c5b8"
+        ]
+      }
+    }
+  }
+}

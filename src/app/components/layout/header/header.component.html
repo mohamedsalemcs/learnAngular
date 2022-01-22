@@ -13,7 +13,7 @@
           </li>
           <li class="nav-item mx-3 dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">
-              Orders two
+              Orders
             </a>
             <ul class="dropdown-menu" aria-labelledby="dropdown01">
               <li><a class="dropdown-item" routerLink="/my-orders">My Orders</a></li>
@@ -22,15 +22,17 @@
             </ul>
           </li>
         </ul>
-        <a class="nav-link text-white mx-3" routerLink="/login">
-          Login
-        </a>
-        <div class="dropdown">
+        <ng-template #anonymouse>
+          <a class="nav-link text-white mx-3" routerLink="/login">
+            Login
+          </a>
+        </ng-template>
+        <div class="dropdown" *ngIf="service.user$ | async as user else anonymouse">
           <a class="text-white dropdown-toggle" href="#" id="dropdown02" data-bs-toggle="dropdown" aria-expanded="false">
-            Username
+            {{user.displayName}}
           </a>
           <ul class="dropdown-menu" aria-labelledby="dropdown02">
-            <li><a class="dropdown-item" href="#">Logout</a></li>
+            <li><a style="cursor: pointer;" class="dropdown-item" (click)="logout()">Logout</a></li>
           </ul>
         </div>
       </div>
