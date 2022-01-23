@@ -5,8 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProductsComponent } from './components/products/products.component';
 import { MyOrdersComponent } from './components/my-orders/my-orders.component';
-import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
-import { AdminProductsComponent } from './admin/admin-products/admin-products.component';
 import { HeaderComponent } from './components/layout/header/header.component';
 import { FooterComponent } from './components/layout/footer/footer.component';
 import { SideMenuComponent } from './components/layout/side-menu/side-menu.component';
@@ -23,7 +21,10 @@ import { AuthGuard } from './services/auth-guard.service';
 import { HomeComponent } from './components/home/home.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { OrderSuccessComponent } from './components/order-success/order-success.component';
-import { AdminUsersComponent } from './admin/admin-users/admin-users.component';
+import { CreateProductComponent } from './admin/products/create-product/create-product.component';
+import { AdminOrdersComponent } from './admin/orders/admin-orders/admin-orders.component';
+import { AdminProductsComponent } from './admin/products/admin-products/admin-products.component';
+import { AdminUsersComponent } from './admin/users/admin-users/admin-users.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { AdminUsersComponent } from './admin/admin-users/admin-users.component';
     CheckoutComponent,
     OrderSuccessComponent,
     AdminUsersComponent,
+    CreateProductComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,7 +54,7 @@ import { AdminUsersComponent } from './admin/admin-users/admin-users.component';
     AngularFireDatabaseModule,
   ],
   exports: [HeaderComponent, FooterComponent, SideMenuComponent],
-  providers: [AuthService, AuthGuard],
+  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

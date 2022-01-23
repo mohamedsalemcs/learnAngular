@@ -1,24 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from './services/auth.service';
+import { UserService } from './services/user.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   constructor(
     private auth: AuthService,
-    private router: ActivatedRoute,
-    route: Router
-  ) {
-    this.auth.user$.subscribe((user) => {
-      if (user) {
-        let returnUrl =
-          this.router.snapshot.queryParamMap.get('returnUrl') || '/';
-        route.navigateByUrl(returnUrl);
-      }
-    });
-  }
+    private route: ActivatedRoute,
+    private router: Router,
+    private user: UserService
+  ) {}
+  ngOnInit() {}
 }

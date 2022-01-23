@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserInfo } from 'src/app/interfaces/user';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -7,10 +8,13 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  constructor(private service: AuthService) {}
+  appUser: UserInfo;
+  constructor(private auth: AuthService) {
+    this.auth.AppUser.subscribe((user) => (this.appUser = user));
+  }
 
   ngOnInit(): void {}
   login() {
-    this.service.login();
+    this.auth.login();
   }
 }

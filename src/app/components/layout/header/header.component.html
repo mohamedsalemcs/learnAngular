@@ -17,8 +17,10 @@
             </a>
             <ul class="dropdown-menu" aria-labelledby="dropdown01">
               <li><a class="dropdown-item" routerLink="/my-orders">My Orders</a></li>
+              <!-- <ng-container *ngIf="appUser.isAdmin"> -->
               <li><a class="dropdown-item" routerLink="/admin/orders">Manage Orders</a></li>
               <li><a class="dropdown-item" routerLink="/admin/products">Manage Products</a></li>
+              <!-- </ng-container> -->
             </ul>
           </li>
         </ul>
@@ -27,9 +29,9 @@
             Login
           </a>
         </ng-template>
-        <div class="dropdown" *ngIf="service.user$ | async as user else anonymouse">
+        <div class="dropdown" *ngIf="appUser else anonymouse">
           <a class="text-white dropdown-toggle" href="#" id="dropdown02" data-bs-toggle="dropdown" aria-expanded="false">
-            {{user.displayName}}
+            {{appUser.name}}
           </a>
           <ul class="dropdown-menu" aria-labelledby="dropdown02">
             <li><a style="cursor: pointer;" class="dropdown-item" (click)="logout()">Logout</a></li>
