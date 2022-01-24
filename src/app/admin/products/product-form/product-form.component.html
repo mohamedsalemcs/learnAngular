@@ -1,0 +1,93 @@
+<div class="container">
+  <main>
+    <h2>Create New Product</h2>
+
+    <div class="row g-5">
+
+      <div class="col-md-7 col-lg-8">
+        <form class="needs-validation" #form="ngForm" (ngSubmit)="save(form.value)">
+          <div class="row g-3">
+
+            <!-- Title -->
+            <div class="col-12">
+              <label for="Title" class="form-label">Title</label>
+              <input type="text" class="form-control" #title="ngModel" [ngModel] name="title" placeholder="Title" required minlength="3">
+              <div class="alert alert-danger py-1 mt-2 mb-0" *ngIf="title.touched && title.invalid">
+                <span *ngIf="title.errors?.['required']">
+                  Title is required.
+                </span>
+                <span *ngIf="title.errors?.['minlength']">
+                  Title Should be more than 3
+                </span>
+              </div>
+            </div>
+            <!-- Price -->
+            <div class="col-12">
+              <label for="Price" class="form-label">Price</label>
+              <div class="input-group has-validation">
+                <span class="input-group-text">&dollar;</span>
+                <input type="number" class="form-control" #price="ngModel" ngModel name="price" placeholder="Price" required [min]="0">
+                <span class="input-group-text">.00</span>
+              </div>
+              <div class="alert alert-danger py-1 mt-2 mb-0" *ngIf="price.touched && price.invalid">
+                <span *ngIf="price.errors?.['required']">
+                  Price is required.
+                </span>
+                <span *ngIf="price.errors?.['min']">
+                  Price Should be more than 0
+                </span>
+              </div>
+            </div>
+            <!-- Category -->
+            <div class="col-md-12">
+              <label for="Category" class="form-label">Category</label>
+              <select class="form-select" #category="ngModel" ngModel name="category" required>
+                <option value="">Choose...</option>
+                <option *ngFor="let cat of cats$ | async" [value]="cat.name">
+                  {{cat.name}}
+                </option>
+              </select>
+              <div class="alert alert-danger py-1 mt-2 mb-0" *ngIf="category.touched && category.invalid">
+                <span *ngIf="category.errors?.['required']">
+                  Please provide a valid Category.
+                </span>
+              </div>
+            </div>
+            <!-- Image Url -->
+            <div class="col-12">
+              <label for="Image_Url" class="form-label">Image Url</label>
+              <input type="text" class="form-control" #imageUrl="ngModel" ngModel name="imageUrl" required url>
+              <div class="alert alert-danger py-1 mt-2 mb-0" *ngIf="imageUrl.touched && imageUrl.invalid">
+                <span *ngIf="imageUrl.errors?.['required']">
+                  Please enter your Image Url.
+                </span>
+                <span *ngIf="imageUrl.errors?.['url']">
+                  Provide valid Image Url.
+                </span>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="d-flex justify-content-center mt-4">
+            <button class="btn btn-primary mx-2" type="submit" style="width: 150px;">Add Product</button>
+            <a routerLink="/admin/products" class="btn btn-danger mx-2" type="submit" style="width: 150px;">Cancel</a>
+
+          </div>
+
+        </form>
+      </div>
+
+      <div class="col-md-5 col-lg-4" *ngIf="title.value || price.value || category.value || imageUrl.value">
+        <div class="card">
+          <img class="card-img-top" [src]="imageUrl.value" alt="">
+          <div class="card-body">
+            <h4 class="card-title">{{title.value}}</h4>
+            <h6 class="card-title">{{price.value | currency: 'USD': true}}</h6>
+            <p class="card-text">{{category.value}}</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>

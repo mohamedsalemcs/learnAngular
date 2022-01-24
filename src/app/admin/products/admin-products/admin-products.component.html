@@ -1,3 +1,28 @@
 <div class="container">
   <a routerLink="/admin/products/new" class="btn btn-primary">New Product</a>
 </div>
+
+<!-- Dispaly Products -->
+<div class="table-responsive mt-4">
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Price</th>
+        <th>Category</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products$ | async">
+        <td scope="row">{{product.payload.val().title}}</td>
+        <td>{{product.payload.val().price}}</td>
+        <td>{{product.payload.val().category}}</td>
+        <td>
+          <a [routerLink]="['/admin/products/', product.key]" class="mx-2 btn btn-success btn-sm">Edit</a>
+          <button class="mx-2 btn btn-danger btn-sm">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

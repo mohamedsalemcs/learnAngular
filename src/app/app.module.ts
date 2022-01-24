@@ -21,11 +21,12 @@ import { AuthGuard } from './services/auth-guard.service';
 import { HomeComponent } from './components/home/home.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { OrderSuccessComponent } from './components/order-success/order-success.component';
-import { CreateProductComponent } from './admin/products/create-product/create-product.component';
 import { AdminOrdersComponent } from './admin/orders/admin-orders/admin-orders.component';
-import { AdminProductsComponent } from './admin/products/admin-products/admin-products.component';
 import { AdminUsersComponent } from './admin/users/admin-users/admin-users.component';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CustomFormsModule } from 'ng2-validation';
+import { AdminProductsComponent } from './admin/products/admin-products/admin-products.component';
+import { ProductFormComponent } from './admin/products/product-form/product-form.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +43,7 @@ import { AdminUsersComponent } from './admin/users/admin-users/admin-users.compo
     CheckoutComponent,
     OrderSuccessComponent,
     AdminUsersComponent,
-    CreateProductComponent,
+    ProductFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,6 +53,9 @@ import { AdminUsersComponent } from './admin/users/admin-users/admin-users.compo
     AngularFireAuthModule,
     AngularFireStorageModule,
     AngularFireDatabaseModule,
+    FormsModule,
+    ReactiveFormsModule,
+    CustomFormsModule,
   ],
   exports: [HeaderComponent, FooterComponent, SideMenuComponent],
   providers: [],
